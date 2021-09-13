@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/flappy.png</file>
+        <file>images/sky.jpeg</file>
+        <file>images/Sky2.jpg</file>
+    </qresource>
+</RCC>

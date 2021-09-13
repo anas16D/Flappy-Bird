@@ -4,6 +4,7 @@
 
 int main(int argc, char *argv[])
 {
+    int x;
 
     QApplication a(argc, argv);
     Widget w;

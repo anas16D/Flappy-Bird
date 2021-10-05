@@ -1,12 +1,14 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include <QGraphicsPixmapItem>
-#include "pillaritem.h"
+#include "pillarItem.h"
+
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
 {
+
     ui->setupUi(this);
     scene = new Scene(this);
     scene->setSceneRect(-250,-300,500,600);
@@ -18,11 +20,12 @@ Widget::Widget(QWidget *parent)
     scene->addLine(-400,0,400,0,QPen(Qt::blue));
     scene->addLine(0,-400,0,400,QPen(Qt::blue));
 
-    pillarItem *pillar = new pillarItem();
-    scene->addItem(pillar);
+//    PillarItem *pillar = new PillarItem();
+//    scene->addItem(pillar);
 
 
     ui->graphicsView->setScene(scene);
+    ui->graphicsView->scale(0.9,0.9);
 }
 
 Widget::~Widget()

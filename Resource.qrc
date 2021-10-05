@@ -4,5 +4,7 @@
         <file>images/sky.jpeg</file>
         <file>images/Sky2.jpg</file>
         <file>images/pipe.png</file>
+        <file>images/pipe3.png</file>
     </qresource>
+    <qresource prefix="/new/prefix1"/>
 </RCC>

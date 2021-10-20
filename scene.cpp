@@ -45,7 +45,7 @@ void Scene::setUpPillarTimer(QGraphicsPixmapItem* pixItem)
         }
 
 
-        if(durationOfPillar > 404 && gameDuration->elapsed() < 100*000)
+        if(durationOfPillar > 404 && gameDuration->elapsed() < 100*1000)
         {
             pillarTimer->setInterval(900-durationOfPillar);
             durationOfPillar -= 100;
@@ -54,7 +54,7 @@ void Scene::setUpPillarTimer(QGraphicsPixmapItem* pixItem)
         if(gameDuration->elapsed() > 100*1000 && gameDuration->elapsed() < 101*1000)
         {
             pillarTimer->setInterval(300);
-            durationOfPillar -= 150;
+            durationOfPillar -= 180;
         }
 
 

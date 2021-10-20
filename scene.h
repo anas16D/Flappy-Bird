@@ -4,18 +4,25 @@
 #include <QGraphicsScene>
 #include "pillaritem.h"
 #include <QTimer>
+#include <QElapsedTimer>
+#include <QGraphicsPixmapItem>
 
 class Scene : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    explicit Scene(QObject *parent = nullptr);
+    explicit Scene(QGraphicsPixmapItem*, QObject *parent = nullptr);
 
 signals:
 
 public slots:
+    void updateBackground(QGraphicsPixmapItem*);
+
 private:
-    void setUpPillarTimer();
+    void setUpPillarTimer(QGraphicsPixmapItem*);
+
+    bool day = true;
+    //QGraphicsPixmapItem *pixItem;
 
     QTimer *pillarTimer;
 

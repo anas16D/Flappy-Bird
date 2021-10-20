@@ -11,10 +11,11 @@ Widget::Widget(QWidget *parent)
 {
 
     ui->setupUi(this);
-    scene = new Scene(this);
+    QGraphicsPixmapItem *pixItem = new QGraphicsPixmapItem(QPixmap(":/images/Sky2.jpg"));
+
+    scene = new Scene(pixItem, this);
     scene->setSceneRect(-250,-300,500,600);
 
-    QGraphicsPixmapItem *pixItem = new QGraphicsPixmapItem(QPixmap(":/images/Sky2.jpg"));
     scene->addItem(pixItem);
     pixItem->setPos(QPointF(0,0) - QPointF(pixItem->boundingRect().width()/2, pixItem->boundingRect().height()/2));
 
@@ -30,7 +31,7 @@ Widget::Widget(QWidget *parent)
 
 
     ui->graphicsView->setScene(scene);
-    ui->graphicsView->scale(0.9,0.9);
+    ui->graphicsView->scale(0.7,0.88);
 }
 
 Widget::~Widget()

@@ -3,7 +3,7 @@
 #include <QGraphicsScene>
 #include <QDebug>
 
-PillarItem::PillarItem() : topPillar(new QGraphicsPixmapItem(QPixmap(":/images/pipe3.png"))),
+PillarItem::PillarItem(int durationOfPillar) : topPillar(new QGraphicsPixmapItem(QPixmap(":/images/pipe3.png"))),
                            bottomPillar(new QGraphicsPixmapItem(QPixmap(":/images/pipe3.png")))
 {
 
@@ -20,16 +20,16 @@ PillarItem::PillarItem() : topPillar(new QGraphicsPixmapItem(QPixmap(":/images/p
 //    topPillar->setScale(-0.6);
 //    bottomPillar->setScale(-0.95);
 
-    yPos = QRandomGenerator::global()->bounded(120);
+    yPos = QRandomGenerator::global()->bounded(100 + durationOfPillar/10);
     int xRandomizer = QRandomGenerator::global()->bounded(180);
-    setPos(QPoint(0,0) + QPoint(260 + xRandomizer, yPos));
+    setPos(QPoint(500 , yPos));
 
 
     xAnimation = new QPropertyAnimation(this, "x", this);
-    xAnimation->setStartValue(330);
-    xAnimation->setEndValue(-380);
+    xAnimation->setStartValue(450);
+    xAnimation->setEndValue(-450);
     xAnimation->setEasingCurve(QEasingCurve::Linear);
-    xAnimation->setDuration(1500);
+    xAnimation->setDuration(1600 - durationOfPillar);
 
     connect(xAnimation, &QPropertyAnimation::finished, [=](){
         qDebug() << "Animation finished";
@@ -61,6 +61,6 @@ qreal PillarItem::x() const
 
 void PillarItem::setX(qreal x)
 {
-    m_x = x;
+  m_x   = x;
     setPos(QPointF(0,0) + QPointF(x, yPos));
 }

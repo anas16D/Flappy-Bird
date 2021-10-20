@@ -5,6 +5,7 @@
 #include <QGraphicsPixmapItem>
 #include <QPropertyAnimation>
 
+
 class PillarItem :public QObject, public QGraphicsItemGroup
 {
     Q_OBJECT
@@ -19,7 +20,7 @@ private:
     int yPos;
 
 public:
-    explicit PillarItem();
+    explicit PillarItem(int durationOfPillar);
     ~PillarItem();
 
     qreal x() const;

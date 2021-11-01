@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "scene.h"
+#include "startscreen.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -16,8 +17,15 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
 
+private slots:
+    void on_pushButton_clicked();
+
+    void on_pushButton_released();
+
 private:
     Ui::Widget *ui;
     Scene * scene;
+
+
 };
 #endif // WIDGET_H

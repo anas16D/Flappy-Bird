@@ -1,12 +1,13 @@
 #include "birditem.h"
 #include <QTimer>
+#include <QGraphicsScene>
 
 BirdItem::BirdItem(QPixmap pixmap): wingPosition(Up), wingDirection(false)
 {
     // initial setting of bird's imamge
     setPixmap(pixmap);
 
-    QTimer *wingsTimer = new QTimer(this);
+    wingsTimer = new QTimer(this);
 
     // connecting signal by wingTimer to he function updatePixmap
     // After each timeout, updatePixmap is called
@@ -16,19 +17,20 @@ BirdItem::BirdItem(QPixmap pixmap): wingPosition(Up), wingDirection(false)
 
     wingsTimer->start(120);
 
-    groundPosition = scenePos().y() + 310;
+    groundPosition = scenePos().y() + 210;
     yAnimation = new QPropertyAnimation(this, "y", this);
-    yAnimation->setStartValue(scenePos().y());
-    yAnimation->setEndValue(groundPosition);
-    yAnimation->setEasingCurve(QEasingCurve::InCirc);
-    yAnimation->setDuration(4000);
+//    yAnimation->setStartValue(scenePos().y());
+//    yAnimation->setEndValue(groundPosition);
+//    yAnimation->setEasingCurve(QEasingCurve::InCirc);
+//    yAnimation->setDuration(4000);
 
-    yAnimation->start();
+//    yAnimation->start();
 
+    //animateVericallyTo(groundPosition, 4000 ,QEasingCurve::InCirc);
 
     rotationAnimation = new QPropertyAnimation(this, "rotation", this);
 
-    rotateTo(90, 2900, QEasingCurve::InQuad);
+    //rotateTo(90, 2900, QEasingCurve::InQuad);
 
 
 
@@ -42,6 +44,52 @@ qreal BirdItem::y() const
 qreal BirdItem::rotation() const
 {
     return m_rotation;
+}
+
+void BirdItem::flapUp()
+{
+    yAnimation->stop();
+    rotationAnimation->stop();
+
+    qreal curPosY = y();
+//    yAnimation->setStartValue(curPosY);
+//    yAnimation->setEndValue(curPosY- scene()->sceneRect().height()/8);
+//    yAnimation->setEasingCurve(QEasingCurve::OutQuad);
+//    yAnimation->setDuration(280);
+//    yAnimation->start();
+
+    animateVericallyTo(curPosY- scene()->sceneRect().height()/10, 200,QEasingCurve::OutQuad);
+    rotateTo(-20, 200, QEasingCurve::OutCubic);
+
+    connect(yAnimation, &QPropertyAnimation::finished, [=](){
+
+        if(y() < groundPosition)
+        {
+            rotationAnimation->stop();
+
+            animateVericallyTo(groundPosition, 1000, QEasingCurve::InCubic);
+            yAnimation->start();
+
+            rotateTo(90, 1100, QEasingCurve::InCubic);
+        }
+    });
+
+}
+
+void BirdItem::startFly()
+{
+    animateVericallyTo(groundPosition, 1500 ,QEasingCurve::InCirc);
+    rotateTo(90, 2900, QEasingCurve::InQuad);
+    wingsTimer->start(120);
+
+}
+
+void BirdItem::freezeBird()
+{
+    yAnimation->stop();
+    rotationAnimation->stop();
+    wingsTimer->stop();
+
 }
 
 void BirdItem::setY(qreal y)
@@ -70,6 +118,16 @@ void BirdItem::rotateTo(const qreal &end, const int &duration, const QEasingCurv
     rotationAnimation->setDuration(duration);
 
     rotationAnimation->start();
+}
+
+void BirdItem::animateVericallyTo(const qreal &end, const int &duration, const QEasingCurve &curve)
+{
+    yAnimation->setStartValue(y()); // current value as start value
+    yAnimation->setEndValue(end);
+    yAnimation->setEasingCurve(curve);
+    yAnimation->setDuration(duration);
+
+    yAnimation->start();
 }
 
 void BirdItem::updatePixmap()

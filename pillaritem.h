@@ -16,16 +16,22 @@ private:
     QGraphicsPixmapItem *bottomPillar;
     QPropertyAnimation *xAnimation;
 
+    bool collided();
+
     qreal m_x;
     int yPos;
 
 public:
     explicit PillarItem(int durationOfPillar);
     ~PillarItem();
+    int sc;
 
     qreal x() const;
 
+    void freezePillars();
+
 signals:
+    void gameOver();
 
 public slots:
 

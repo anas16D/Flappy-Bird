@@ -12,5 +12,8 @@ int main(int argc, char *argv[])
     w.show();
     w.setWindowTitle("Flappy Bird");
     w.setWindowIcon(QIcon(":/images/flappy.png"));
+
+
+
     return a.exec();
 }

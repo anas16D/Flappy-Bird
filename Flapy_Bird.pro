@@ -2,6 +2,8 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+QT += multimedia
+
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -20,15 +22,18 @@ SOURCES += \
     main.cpp \
     pillaritem.cpp \
     scene.cpp \
+    startscreen.cpp \
     widget.cpp
 
 HEADERS += \
     birditem.h \
     pillaritem.h \
     scene.h \
+    startscreen.h \
     widget.h
 
 FORMS += \
+    startscreen.ui \
     widget.ui
 
 TRANSLATIONS += \

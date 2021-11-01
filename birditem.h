@@ -18,11 +18,18 @@ public:
     qreal y() const;
     qreal rotation() const;
 
+    void flapUp();
+
+    void startFly();
+
+    void freezeBird();
+
 public slots:
 
     void setY(qreal y);
     void setRotation(qreal rotation);
     void rotateTo(const qreal &end, const int &duration, const QEasingCurve &curve);
+    void animateVericallyTo(const qreal &end, const int &duration, const QEasingCurve &curve);
 
 private:
     void updatePixmap();
@@ -30,6 +37,8 @@ private:
     enum Position {Up, Middle, Down};
     Position wingPosition;
     bool wingDirection; // false: down, true: up
+
+    QTimer *wingsTimer;
 
     qreal m_y;
     qreal m_rotation;

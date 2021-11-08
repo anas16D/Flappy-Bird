@@ -4,6 +4,9 @@
 #include <QWidget>
 #include "scene.h"
 #include "startscreen.h"
+#include <QMediaPlaylist>
+#include <QMediaPlayer>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -22,9 +25,18 @@ private slots:
 
     void on_pushButton_released();
 
+    void on_musicButton_clicked();
+
+    void on_musicButton_released();
+
 private:
     Ui::Widget *ui;
     Scene * scene;
+
+    QMediaPlaylist *musicList;
+    QMediaPlayer *music;
+
+    bool musicPlaying;
 
 
 };

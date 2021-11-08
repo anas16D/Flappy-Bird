@@ -1,6 +1,7 @@
 #include "widget.h"
 #include <QIcon>
 
+
 #include <QApplication>
 
 int main(int argc, char *argv[])

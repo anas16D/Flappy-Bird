@@ -4,24 +4,24 @@
 #include <QDialog>
 
 namespace Ui {
-class switchScreen;
+class startScreen;
 }
 
-class switchScreen : public QDialog
+class startScreen : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit switchScreen(QWidget *parent = nullptr);
-    ~switchScreen();
+    explicit startScreen(QWidget *parent = nullptr);
+    ~startScreen();
 
     QString getName() const;
 
 private slots:
-    void on_switchButton_clicked();
+    void on_startButton_clicked();
 
 private:
-    Ui::switchScreen *ui;
+    Ui::startScreen *ui;
 };
 
 #endif // STARTSCREEN_H

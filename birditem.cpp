@@ -58,7 +58,7 @@ void BirdItem::flapUp()
 //    yAnimation->setDuration(280);
 //    yAnimation->start();
 
-    animateVericallyTo(curPosY- scene()->sceneRect().height()/10, 200,QEasingCurve::OutQuad);
+    animateVericallyTo(curPosY- scene()->sceneRect().height()/12, 200,QEasingCurve::OutQuad);
     rotateTo(-20, 200, QEasingCurve::OutCubic);
 
     connect(yAnimation, &QPropertyAnimation::finished, [=](){

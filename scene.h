@@ -27,6 +27,10 @@ public:
 
 signals:
 
+    void gameOverScene();
+
+
+
 public slots:
     void updateBackground(QGraphicsPixmapItem*);
 

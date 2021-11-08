@@ -6,6 +6,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
 
+
 Scene::Scene(QGraphicsPixmapItem *pixItem, QObject *parent) : QGraphicsScene(parent),
     gameOn(false)
 {
@@ -32,7 +33,7 @@ void Scene::gameSwitch()
     {
         cleanPillars();
         pillarTimer->start(800);
-        backgroundTimer->start();
+        backgroundTimer->start(20*1000);
         bird->setPos(-150,0);
     }
 }
@@ -63,11 +64,15 @@ void Scene::setUpPillarTimer(QGraphicsPixmapItem* pixItem)
 
 
 
-        connect(pillarItem, &PillarItem::gameOver, [=](){
+        connect(pillarItem, &PillarItem::gameOver, this,  [=](){
             pillarTimer->stop();
             backgroundTimer->stop();
             freezeGame();
             setGameOn(false);
+
+            emit gameOverScene();
+
+
 
 
         });
@@ -98,17 +103,6 @@ void Scene::setUpPillarTimer(QGraphicsPixmapItem* pixItem)
 
 
     });
-
-    //pillarTimer->start(800);
-
-//    connect(pauseButton, &QPushButton::released, this, [=](){
-//       disconnect(pillarTimer, &QTimer::timeout, this, 0);
-//       //disconnect(backgroundTimer);
-//        pillarTimer->stop();
-//        backgroundTimer->stop();
-//       qDebug() << "Hello";
-//    });
-
 
 
 

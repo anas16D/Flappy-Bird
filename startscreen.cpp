@@ -1,27 +1,27 @@
 #include "startscreen.h"
-#include "ui_switchscreen.h"
+#include "ui_startscreen.h"
 #include <QDebug>
 
 
-switchScreen::switchScreen(QWidget *parent) :
+startScreen::startScreen(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::switchScreen)
+    ui(new Ui::startScreen)
 {
 
     ui->setupUi(this);
 
-    ui->switchButton->setEnabled(false);
+    ui->startButton->setEnabled(false);
 
     connect(ui->playerName, &QLineEdit::textChanged, [=](){
 
         if(!(ui->playerName->text().isEmpty()))
         {
-            ui->switchButton->setEnabled(true);
+            ui->startButton->setEnabled(true);
             qDebug() << getName();
         }
         else
         {
-            ui->switchButton->setEnabled(false);
+            ui->startButton->setEnabled(false);
         }
     });
 
@@ -30,18 +30,18 @@ switchScreen::switchScreen(QWidget *parent) :
 
 
 
-switchScreen::~switchScreen()
+startScreen::~startScreen()
 {
     delete ui;
 }
 
-QString switchScreen::getName() const
+QString startScreen::getName() const
 {
 
     return ui->playerName->text();
 }
 
-void switchScreen::on_switchButton_clicked()
+void startScreen::on_startButton_clicked()
 {
 
     this->done(0);

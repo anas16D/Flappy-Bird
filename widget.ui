@@ -35,6 +35,13 @@
     </widget>
    </item>
    <item>
+    <widget class="QPushButton" name="musicButton">
+     <property name="text">
+      <string>Music</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QPushButton" name="pushButton">
      <property name="minimumSize">
       <size>

@@ -19,6 +19,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     birditem.cpp \
+    gameoverscreen.cpp \
     main.cpp \
     pillaritem.cpp \
     scene.cpp \
@@ -27,12 +28,14 @@ SOURCES += \
 
 HEADERS += \
     birditem.h \
+    gameoverscreen.h \
     pillaritem.h \
     scene.h \
     startscreen.h \
     widget.h
 
 FORMS += \
+    gameoverscreen.ui \
     startscreen.ui \
     widget.ui
 

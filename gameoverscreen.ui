@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>startScreen</class>
- <widget class="QDialog" name="startScreen">
+ <class>GameOverScreen</class>
+ <widget class="QDialog" name="GameOverScreen">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -16,37 +16,40 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>110</y>
+     <x>90</x>
+     <y>130</y>
      <width>131</width>
-     <height>31</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>EnterYour Name</string>
+    <string>TextLabel</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="playerName">
+  <widget class="QPushButton" name="RestartButton">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>169</y>
-     <width>161</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="startButton">
-   <property name="geometry">
-    <rect>
-     <x>290</x>
-     <y>170</y>
+     <x>300</x>
+     <y>130</y>
      <width>75</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>Start</string>
+    <string>Restart</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="exitButton">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>250</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Exit</string>
    </property>
   </widget>
  </widget>

@@ -8,7 +8,7 @@
 
 
 Scene::Scene(QGraphicsPixmapItem *pixItem, QObject *parent) : QGraphicsScene(parent),
-    gameOn(false)
+    gameOn(false), score(0)
 {
 
     setUpPillarTimer(pixItem);
@@ -98,8 +98,17 @@ void Scene::setUpPillarTimer(QGraphicsPixmapItem* pixItem)
             durationOfPillar -= 100;
         }
 
+//        if(pillarItem->pos() == bird->pos())
+//        {
 
-        qDebug() << "Duration : " << durationOfPillar;
+//            score++;
+//        }
+
+
+//        qDebug() << "Duration : " << durationOfPillar;
+//        qDebug() << "Score: " << score;
+//        qDebug() << "Pillar Item pos: " << pillarItem->pos();
+//        qDebug() << "Bird POs: " << bird->pos();
 
 
     });
@@ -187,6 +196,12 @@ void Scene::updateBackground(QGraphicsPixmapItem* pixItem)
         day = true;
         pixItem->setPixmap(QPixmap(":/images/Sky2.jpg"));
     }
+}
+
+void Scene::incrementScore()
+{
+    score++;
+    qDebug() <<"Score:" << score;
 }
 
 

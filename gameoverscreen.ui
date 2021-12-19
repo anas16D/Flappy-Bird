@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="playerName">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -22,18 +22,39 @@
      <height>41</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">font-size: 20px;
+font-weight: bold;
+color:#2d4059;
+font-family:Comic Sans MS, Bodoni MT;</string>
+   </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>rr</string>
    </property>
   </widget>
   <widget class="QPushButton" name="RestartButton">
    <property name="geometry">
     <rect>
      <x>300</x>
-     <y>130</y>
-     <width>75</width>
-     <height>23</height>
+     <y>122</y>
+     <width>71</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+border-radius: 15%;
+border:groove;
+border-width: 3px;
+border-color: green;
+background: green;
+color: yellow;
+font-size:18px;
+font-family: Rockwell;
+startButton:!enable{
+background-color: yellow;
+color: green;
+}</string>
    </property>
    <property name="text">
     <string>Restart</string>
@@ -50,6 +71,70 @@
    </property>
    <property name="text">
     <string>Exit</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="musicButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>0</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/images/flappy.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QToolButton#musicButton{
+border-radius:15%;
+border:groove;
+border-color: rgb(64, 191, 191);
+background:rgb(0, 168, 168);
+color: #1f9129;
+font-size:12px;
+font-family: Rockwell;
+}
+QToolButton#musicButton:hover{
+background-color:#339095 ;
+}
+
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="gameOverLabel">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>240</y>
+     <width>131</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600; color:#da0000;&quot;&gt;GAME OVER&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="finalScoreLabel">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>70</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size: 20px;
+font-weight: bold;
+color:#2d4059;
+font-family:Comic Sans MS, Bodoni MT;</string>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
    </property>
   </widget>
  </widget>

@@ -34,6 +34,8 @@ signals:
 public slots:
     void updateBackground(QGraphicsPixmapItem*);
 
+    void incrementScore();
+
 private:
     void setUpPillarTimer(QGraphicsPixmapItem*);
 
@@ -49,6 +51,8 @@ private:
     BirdItem *bird ;
 
     bool gameOn;
+
+    int score;
 
 
 

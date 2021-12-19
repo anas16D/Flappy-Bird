@@ -7,7 +7,7 @@
 
 
 PillarItem::PillarItem(int durationOfPillar) : topPillar(new QGraphicsPixmapItem(QPixmap(":/images/pipe3.png"))),
-                           bottomPillar(new QGraphicsPixmapItem(QPixmap(":/images/pipe3.png"))), sc(0)
+                           bottomPillar(new QGraphicsPixmapItem(QPixmap(":/images/pipe3.png"))), sc(0), birdPassed(false)
 {
 
 
@@ -48,8 +48,6 @@ PillarItem::PillarItem(int durationOfPillar) : topPillar(new QGraphicsPixmapItem
 
 
 
-
-
 }
 
 PillarItem::~PillarItem()
@@ -73,7 +71,18 @@ void PillarItem::freezePillars()
 void PillarItem::setX(qreal x)
 {
     m_x   = x;
-    qDebug() << "X: " << x;
+    //qDebug() << "X: " << x;
+
+    if(x < (-150,0) && !birdPassed)
+    {
+
+        birdPassed = true;
+        qDebug() << "Score: " << sc;
+    }
+    else if(x > (-150, 0))
+    {
+        birdPassed = false;
+    }
 
 
     if(collided())

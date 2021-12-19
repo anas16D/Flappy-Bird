@@ -25,6 +25,7 @@ public:
     explicit PillarItem(int durationOfPillar);
     ~PillarItem();
     int sc;
+    bool birdPassed;
 
     qreal x() const;
 

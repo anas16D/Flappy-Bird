@@ -10,6 +10,13 @@ GameOverScreen::GameOverScreen(QWidget *parent) :
     ui->setupUi(this);
 
     //ui->label->setText(widget);
+
+    ui->musicButton->setIcon(QIcon(":/images/musicON.png"));
+
+
+
+
+
 }
 
 GameOverScreen::~GameOverScreen()
@@ -29,4 +36,15 @@ void GameOverScreen::on_exitButton_clicked()
 {
     qDebug() << "exit button clicked";
     emit endGame();
+}
+
+void GameOverScreen::on_musicButton_clicked()
+{
+    emit musicPalying();
+}
+
+void GameOverScreen::setPlayerName(QString name)
+{
+    ui->playerName->setText(name);
+
 }

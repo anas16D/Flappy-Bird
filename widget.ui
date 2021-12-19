@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>583</width>
-    <height>613</height>
+    <height>680</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,29 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="label">
+     <property name="styleSheet">
+      <string notr="true">font-family: Ravie;
+font-size:18px;
+color: rgb(185, 153, 25);
+width: 20px;
+</string>
+     </property>
      <property name="text">
       <string>TextLabel</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="scoringLabel">
+     <property name="styleSheet">
+      <string notr="true">font-family: Ravie;
+font-size:18px;
+color: rgb(185, 153, 25);
+width: 20px;
+</string>
+     </property>
+     <property name="text">
+      <string>Score: </string>
      </property>
     </widget>
    </item>
@@ -36,6 +57,15 @@
    </item>
    <item>
     <widget class="QPushButton" name="musicButton">
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 0);
+background-color: rgb(39, 144, 37);
+font-size: 18px;
+font-family:Andalus;
+height: 10px;
+font-weight: bold;
+</string>
+     </property>
      <property name="text">
       <string>Music</string>
      </property>
@@ -49,8 +79,17 @@
        <height>23</height>
       </size>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 0);
+background-color: rgb(39, 144, 37);
+font-size: 18px;
+font-family:Andalus;
+height: 10px;
+font-weight: bold;
+</string>
+     </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>Pause/Resume</string>
      </property>
     </widget>
    </item>

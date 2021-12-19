@@ -14,6 +14,8 @@
         <file>images/nightSky.jpg</file>
         <file>Audio/TRG_Banks_-_08_-_A_Christmas_adventure_Part_1-1 (1) (1).mp3</file>
         <file>images/bgImage.png</file>
+        <file>images/musicON.png</file>
+        <file>images/musicOFF.png</file>
     </qresource>
     <qresource prefix="/new/prefix1"/>
 </RCC>

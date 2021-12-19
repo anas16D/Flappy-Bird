@@ -20,6 +20,9 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
 
+    void musicIconOn();
+    void musicIconOff();
+
 private slots:
     void on_pushButton_clicked();
 

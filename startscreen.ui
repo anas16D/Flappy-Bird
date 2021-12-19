@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>startScreen</class>
- <widget class="QDialog" name="startScreen">
+ <class>Startscreen</class>
+ <widget class="QDialog" name="Startscreen">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,27 +13,50 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>110</y>
-     <width>131</width>
-     <height>31</height>
+     <x>20</x>
+     <y>120</y>
+     <width>231</width>
+     <height>41</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">font-size: 25px;
+font-weight: 1500px;
+color:rgb(28, 124, 27);
+font-family:Magneto, Bodoni MT;
+</string>
+   </property>
    <property name="text">
-    <string>EnterYour Name</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;EnterYour Name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="playerName">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>169</y>
-     <width>161</width>
-     <height>31</height>
+     <x>20</x>
+     <y>160</y>
+     <width>171</width>
+     <height>41</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius:15px;
+border:groove;
+color: #fda403;
+border-width: 3px;
+border-color: green;
+background-color: darkgreen;
+font-family: Rockwell;
+font-size: 18px;</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="startButton">
@@ -41,12 +64,67 @@
     <rect>
      <x>290</x>
      <y>170</y>
-     <width>75</width>
-     <height>23</height>
+     <width>81</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#startButton:disabled{
+background-color: rgba(23, 113, 115, 120);
+color: #0d4554;
+border-color:rgb(32, 154, 173);
+border-radius: 15%;
+border:groove #194753;
+border-width: 3px;
+}
+QPushButton#startButton:enabled{
+border-color: green;
+border-radius: 15%;
+border:groove green;
+border-width: 3px;
+background-color: green;
+color: yellow;
+font-size:18px;
+font-family: Rockwell;
+}
+
+QPushButton#startButton:hover{
+background-color: rgb(0, 62, 0);
+color: yellow;
+}
+</string>
    </property>
    <property name="text">
     <string>Start</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="musicButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>20</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#musicButton{
+border-radius:15%;
+border:groove;
+border-color: rgb(64, 191, 191);
+background:rgb(0, 168, 168);
+color: #1f9129;
+font-size:12px;
+font-family: Rockwell;
+}
+QPushButton#musicButton:hover{
+background-color:#339095 ;
+}
+
+</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

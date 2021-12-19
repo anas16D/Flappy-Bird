@@ -26,12 +26,47 @@ Widget::Widget(QWidget *parent)
     musicPlaying = true;       // private  data member
 
 
-    startScreen *screen  = new startScreen;
+    Startscreen *startscreen  = new Startscreen;
 
-    screen->setWindowIcon(QIcon(":/images/flappy.png"));
-    screen->setWindowTitle("Flappy Bird");
-    screen->setStyleSheet("QDialog{background-image: url(:/images/bgImage.png);}");
-    screen->exec();
+    startscreen->setWindowIcon(QIcon(":/images/flappy.png"));
+    startscreen->setWindowTitle("Flappy Bird");
+    startscreen->setStyleSheet("QDialog{background-image: url(:/images/bgImage.png);}");
+
+
+    connect(startscreen, &Startscreen::musicPlaying, startscreen, [=](){
+
+        qDebug() << "music";
+
+        if(this->musicPlaying)
+        {
+
+            this->musicPlaying = false;
+            music->pause();
+
+            startscreen->musicIconOff();
+        }
+        else
+        {
+            this->musicPlaying = true;
+            music->play();
+
+            startscreen->musicIconOn();
+
+        }
+    });
+
+
+
+    startscreen->exec();
+
+//    connect(startscreen, &Startscreen::destroyed, startscreen, [=](){
+
+//        qDebug() << "destroyed";
+//        this->destroy();
+//    });
+
+
+
 
 
 
@@ -41,7 +76,7 @@ Widget::Widget(QWidget *parent)
     //this->showFullScreen();
 
 
-    ui->label->setText(screen->getName());
+    ui->label->setText(startscreen->getName());
     QGraphicsPixmapItem *pixItem = new QGraphicsPixmapItem(QPixmap(":/images/Sky2.jpg"));
 
 
@@ -51,8 +86,8 @@ Widget::Widget(QWidget *parent)
     scene->addItem(pixItem);
     pixItem->setPos(QPointF(0,0) - QPointF(pixItem->boundingRect().width()/2, pixItem->boundingRect().height()/2));
 
-    scene->addLine(-400,0,400,0,QPen(Qt::blue));
-    scene->addLine(0,-400,0,400,QPen(Qt::blue));
+//    scene->addLine(-400,0,400,0,QPen(Qt::blue));
+//    scene->addLine(0,-400,0,400,QPen(Qt::blue));
 
 //    BirdItem *bird = new BirdItem(QPixmap(":/images/flappy_middle.png"));
 //    scene->addItem(bird);
@@ -68,6 +103,8 @@ Widget::Widget(QWidget *parent)
     ui->graphicsView->setScene(scene);
     ui->graphicsView->scale(0.7,0.88);
 
+    ui->musicButton->setIcon(QIcon(":/images/musicON.png"));
+
 
     connect(scene, &Scene::gameOverScene,this,  [=](){
 
@@ -76,8 +113,10 @@ Widget::Widget(QWidget *parent)
         gameOverScreen->setWindowTitle("Flappy Bird");
         gameOverScreen->setStyleSheet("QDialog{background-image: url(:/images/bgImage.png);}");
 
+        gameOverScreen->setPlayerName(startscreen->getName());
 
-        connect(gameOverScreen, &GameOverScreen::endGame, this, [=](){
+
+        connect(gameOverScreen, &GameOverScreen::endGame, gameOverScreen, [=](){
 
 
             qDebug() << "emit end Game";
@@ -86,9 +125,27 @@ Widget::Widget(QWidget *parent)
 
 
         });
+        connect(gameOverScreen, &GameOverScreen::musicPalying, gameOverScreen, [=](){
+
+            if(this->musicPlaying)
+            {
+                this->musicPlaying = false;
+                music->pause();
+            }
+            else
+            {
+                this->musicPlaying = true;
+                music->play();
+
+            }
+
+        });
+
         gameOverScreen->exec();
 
     });
+
+
 
 
 
@@ -98,6 +155,16 @@ Widget::Widget(QWidget *parent)
 Widget::~Widget()
 {
     delete ui;
+}
+
+void Widget::musicIconOn()
+{
+    ui->musicButton->setIcon(QIcon(":/images/musicON.png"));
+}
+
+void Widget::musicIconOff()
+{
+    ui->musicButton->setIcon(QIcon(":/images/musicOFF.png"));
 }
 
 
@@ -133,11 +200,15 @@ void Widget::on_musicButton_clicked()
     {
         musicPlaying = false;
         music->pause();
+
+        this->musicIconOff();
     }
     else
     {
         musicPlaying = true;
         music->play();
+
+        this->musicIconOn();
 
     }
 }

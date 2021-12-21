@@ -20,6 +20,8 @@ public:
 
     QString getName() const;
 
+
+
     void musicIconOn();
     void musicIconOff();
 

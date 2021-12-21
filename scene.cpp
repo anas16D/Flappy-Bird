@@ -24,18 +24,39 @@ void Scene::addBird()
 
 void Scene::gameSwitch()
 {
+    if(this->getGameOn())
+    {
+        this->freezeGame();
+        setGameOn(false);
+        pillarTimer->stop();
+        return;
+    }
 
-    bird->startFly();
+
 
     setGameOn(true);
 
     if(!pillarTimer->isActive())
     {
-        cleanPillars();
+        //cleanPillars();
         pillarTimer->start(800);
         backgroundTimer->start(20*1000);
-        bird->setPos(-150,0);
+        //bird->setPos(-150,0);
     }
+
+    QList<QGraphicsItem*> sceneItems = items();
+
+    foreach(QGraphicsItem *item, sceneItems)
+    {
+        PillarItem *pillar = dynamic_cast<PillarItem*>(item);
+
+        if(pillar)
+        {
+            pillar->unfreezePillars();
+        }
+    }
+
+    bird->startFly();
 }
 
 
@@ -98,17 +119,7 @@ void Scene::setUpPillarTimer(QGraphicsPixmapItem* pixItem)
             durationOfPillar -= 100;
         }
 
-//        if(pillarItem->pos() == bird->pos())
-//        {
 
-//            score++;
-//        }
-
-
-//        qDebug() << "Duration : " << durationOfPillar;
-//        qDebug() << "Score: " << score;
-//        qDebug() << "Pillar Item pos: " << pillarItem->pos();
-//        qDebug() << "Bird POs: " << bird->pos();
 
 
     });
@@ -202,6 +213,40 @@ void Scene::incrementScore()
 {
     score++;
     qDebug() <<"Score:" << score;
+
+    emit updateScore();
+}
+
+QString Scene::getScore() const
+{
+    int temp = score;
+    QString ans  = "";
+    while(temp)
+    {
+        char sc = static_cast<char>((temp%10) + '0');
+        temp = temp/10;
+        ans += sc;
+    }
+    std::reverse(ans.begin(), ans.end());
+
+    return "Score: " + ans;
+}
+
+void Scene::restartGame()
+{
+    score = 0;
+
+    setGameOn(true);
+
+    if(!pillarTimer->isActive())
+    {
+        cleanPillars();
+        pillarTimer->start(800);
+        backgroundTimer->start(20*1000);
+        bird->setPos(-150,0);
+    }
+
+    bird->startFly();
 }
 
 

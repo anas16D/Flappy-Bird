@@ -22,6 +22,8 @@ signals:
 
     void musicPalying();
 
+    void restartGame();
+
 private slots:
 
 

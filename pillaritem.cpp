@@ -47,7 +47,6 @@ PillarItem::PillarItem(int durationOfPillar) : topPillar(new QGraphicsPixmapItem
 
 
 
-
 }
 
 PillarItem::~PillarItem()
@@ -65,7 +64,12 @@ qreal PillarItem::x() const
 
 void PillarItem::freezePillars()
 {
-    xAnimation->stop();
+    xAnimation->pause();
+}
+
+void PillarItem::unfreezePillars()
+{
+    xAnimation->resume();
 }
 
 void PillarItem::setX(qreal x)
@@ -75,14 +79,20 @@ void PillarItem::setX(qreal x)
 
     if(x < (-150,0) && !birdPassed)
     {
+        QGraphicsScene *mScene = scene();
+        Scene *myScene = dynamic_cast<Scene*>(mScene);
+
+        if(myScene)
+        {
+            myScene->incrementScore();
+        }
 
         birdPassed = true;
-        qDebug() << "Score: " << sc;
+
+        //qDebug() << "Score: " << sc;
+
     }
-    else if(x > (-150, 0))
-    {
-        birdPassed = false;
-    }
+
 
 
     if(collided())

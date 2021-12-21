@@ -57,6 +57,8 @@ Widget::Widget(QWidget *parent)
 
 
 
+
+
     startscreen->exec();
 
 //    connect(startscreen, &Startscreen::destroyed, startscreen, [=](){
@@ -105,6 +107,13 @@ Widget::Widget(QWidget *parent)
 
     ui->musicButton->setIcon(QIcon(":/images/musicON.png"));
 
+    connect(scene, &Scene::updateScore, this, [=](){
+
+        ui->scoringLabel->setText(scene->getScore());
+    });
+
+
+
 
     connect(scene, &Scene::gameOverScene,this,  [=](){
 
@@ -141,6 +150,15 @@ Widget::Widget(QWidget *parent)
 
         });
 
+
+        connect(gameOverScreen, &GameOverScreen::restartGame, [=](){
+
+            scene->restartGame();
+        });
+
+
+
+
         gameOverScreen->exec();
 
     });
@@ -170,14 +188,6 @@ void Widget::musicIconOff()
 
 void Widget::on_pushButton_clicked()
 {
-    if(scene->getGameOn())
-    {
-//        startScreen *screen  = new startScreen;
-//        screen->setWindowIcon(QIcon(":/images/flappy.png"));
-//        screen->setWindowTitle("Flappy Bird");
-//        screen->setStyleSheet("QDialog{background-image: url(:/images/nightSky.jpg);}");
-//        screen->exec();
-    }
 
     qDebug() << "push button clicked";
     scene->gameSwitch();

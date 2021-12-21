@@ -30,6 +30,8 @@ GameOverScreen::~GameOverScreen()
 void GameOverScreen::on_RestartButton_clicked()
 {
     this->done(0);
+
+    emit restartGame();
 }
 
 void GameOverScreen::on_exitButton_clicked()

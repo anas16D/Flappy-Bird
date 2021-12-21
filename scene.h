@@ -14,10 +14,17 @@ class Scene : public QGraphicsScene
     Q_OBJECT
 public:
     explicit Scene(QGraphicsPixmapItem*, QObject *parent = nullptr);
+    explicit Scene();
 
     void addBird();
 
     void gameSwitch();
+
+    void incrementScore();
+
+    QString getScore() const;
+
+    void restartGame();
 
 
 
@@ -29,12 +36,14 @@ signals:
 
     void gameOverScene();
 
+    void updateScore();
+
 
 
 public slots:
     void updateBackground(QGraphicsPixmapItem*);
 
-    void incrementScore();
+
 
 private:
     void setUpPillarTimer(QGraphicsPixmapItem*);

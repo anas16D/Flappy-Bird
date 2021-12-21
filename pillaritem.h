@@ -30,6 +30,7 @@ public:
     qreal x() const;
 
     void freezePillars();
+    void unfreezePillars();
 
 signals:
     void gameOver();

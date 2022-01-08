@@ -5,6 +5,7 @@
 #include <QFont>
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
+#include <QThread>
 
 
 Scene::Scene(QGraphicsPixmapItem *pixItem, QObject *parent) : QGraphicsScene(parent),
@@ -87,7 +88,11 @@ void Scene::setUpPillarTimer(QGraphicsPixmapItem* pixItem)
 
         connect(pillarItem, &PillarItem::gameOver, this,  [=](){
             pillarTimer->stop();
+            //delete pillarTimer;
+
             backgroundTimer->stop();
+            //delete backgroundTimer;
+
             freezeGame();
             setGameOn(false);
 
@@ -161,9 +166,17 @@ void Scene::cleanPillars()
         if(pillar)
         {
             this->removeItem(pillar);
-            delete pillar;
+            //delete pillar;
         }
     }
+
+
+
+
+
+
+
+
 }
 
 bool Scene::getGameOn() const
@@ -236,17 +249,24 @@ void Scene::restartGame()
 {
     score = 0;
 
+    qDebug() << "Restart game";
+
     setGameOn(true);
 
     if(!pillarTimer->isActive())
     {
         cleanPillars();
+        //setUpPillarTimer();
+        QThread::msleep(400);
         pillarTimer->start(800);
+
         backgroundTimer->start(20*1000);
         bird->setPos(-150,0);
     }
 
     bird->startFly();
+
+    qDebug() << "game restarted";
 }
 
 

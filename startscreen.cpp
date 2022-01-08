@@ -1,4 +1,4 @@
-#include "startscreen.h"
+             #include "startscreen.h"
 #include "ui_startscreen.h"
 #include <QDebug>
 

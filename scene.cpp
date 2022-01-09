@@ -68,7 +68,7 @@ void Scene::setUpPillarTimer(QGraphicsPixmapItem* pixItem)
     int durationOfPillar = 0;
 
 
-    QElapsedTimer *gameDuration = new QElapsedTimer();
+    gameDuration = new QElapsedTimer();
     gameDuration->start();
 
     connect(backgroundTimer, &QTimer::timeout, this, [=](){
@@ -84,17 +84,27 @@ void Scene::setUpPillarTimer(QGraphicsPixmapItem* pixItem)
     connect(pillarTimer, &QTimer::timeout,this, [=]()mutable{
         PillarItem *pillarItem = new PillarItem(durationOfPillar);
 
+        qDebug() << "Duration Of Pillar = " << durationOfPillar;
+        qDebug() << "game Durtion = " << gameDuration->elapsed();
+
+
 
 
         connect(pillarItem, &PillarItem::gameOver, this,  [=](){
+
+
             pillarTimer->stop();
-            //delete pillarTimer;
+
 
             backgroundTimer->stop();
-            //delete backgroundTimer;
+
+            bird->setScale(1);
+
 
             freezeGame();
             setGameOn(false);
+
+            //gameDuration->restart();
 
             emit gameOverScene();
 
@@ -112,16 +122,24 @@ void Scene::setUpPillarTimer(QGraphicsPixmapItem* pixItem)
         }
 
 
-        if(durationOfPillar > 200 && gameDuration->elapsed() < 100*1000)
+        if(durationOfPillar > 250)
         {
-            pillarTimer->setInterval(800-durationOfPillar);
+
             durationOfPillar -= 50;
         }
 
-        if(gameDuration->elapsed() > 100*1000 && gameDuration->elapsed() < 100.5*1000)
+        if(gameDuration->elapsed() > 10*1000 && gameDuration->elapsed() < 10.5*1000)
         {
-            pillarTimer->setInterval(340);
-            durationOfPillar -= 100;
+            pillarTimer->setInterval(540);
+            bird->setScale(.8);
+
+        }
+
+        if(gameDuration->elapsed() > 15*1000 && gameDuration->elapsed() < 15.5*1000)
+        {
+             pillarTimer->setInterval(340);
+             bird->setScale(.8);
+
         }
 
 
@@ -225,7 +243,7 @@ void Scene::updateBackground(QGraphicsPixmapItem* pixItem)
 void Scene::incrementScore()
 {
     score++;
-    qDebug() <<"Score:" << score;
+    //qDebug() <<"Score:" << score;
 
     emit updateScore();
 }
@@ -253,11 +271,15 @@ void Scene::restartGame()
 
     setGameOn(true);
 
+    gameDuration->restart();
+
+
+
     if(!pillarTimer->isActive())
     {
         cleanPillars();
         //setUpPillarTimer();
-        QThread::msleep(400);
+        //QThread::msleep(400);
         pillarTimer->start(800);
 
         backgroundTimer->start(20*1000);

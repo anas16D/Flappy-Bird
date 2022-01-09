@@ -57,6 +57,8 @@ private:
 
     QTimer *pillarTimer;
     QTimer *backgroundTimer;
+    QElapsedTimer *gameDuration;
+
     BirdItem *bird ;
 
     bool gameOn;
